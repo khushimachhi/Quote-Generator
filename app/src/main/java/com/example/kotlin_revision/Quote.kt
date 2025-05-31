@@ -2,6 +2,8 @@ package com.example.kotlin_revision
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -17,7 +19,7 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Quote(){
+fun Quote(onBack: () -> Unit) {
     val quotes = listOf(
         "All the world's a stage, and all the men and women merely players." to "William Shakespear",
         "You cannot find peace by avoiding life" to "Virginia Woolf",
@@ -48,6 +50,12 @@ fun Quote(){
                         fontWeight = FontWeight.Bold,
                         fontSize = 40.sp
                 ))},
+                navigationIcon = {
+                    IconButton(onClick = onBack){
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                }
+                ,
                         colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = backgroundColor,
             ))
@@ -81,6 +89,11 @@ fun Quote(){
         {
             Text("Next Quote")
         }
+
+        OutlinedButton(onClick = onBack) {
+            Text("Back to Home")
+        }
+
 
     }
     }
